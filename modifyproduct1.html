@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: lightgray;
+        }
+        img{
+            width: 150px;
+            height:120px;
+        }
+
+        .product-management {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-item {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<section class="product-management">
+    <div class="product-item" id="product1">
+        <img src="pic1.jpg" alt="image1">
+        <p> Name: Wall Hanging shelf Decor<br>
+            Material: Handicraft<br>
+            ideal for: All Purpose<br>
+            Type: Festive Toran</p>
+        <button type="button" onclick="redirectToModifyPage('product1')">Modify Product</button>
+    </div>
+    <div class="product-item" id="product2">
+        <img src="pic2.jpg" alt="image2">
+        <p>Display Type:Analog<br>
+        ocassion:Party-Wedding<br>
+        Watch-type:Wrist<br>
+        Dial-color:RoseGold
+    </p>
+    <button type="button" onclick="redirectToModifyPage('product2')">Modify Product</button>
+    </div>
+    <div class="product-item" id="product3">
+        <img src="pic1.jpg" alt="image3">
+        <p> Name: Wall Hanging <br>
+            Material: Handicraft<br>
+            ideal for: occasional Purpose<br>
+            Type: Festive Toran</p>
+            <button type="button" onclick="redirectToModifyPage('product3')">Modify Product</button>
+    </div>
+</section>
+
+<script>
+    function redirectToModifyPage(productId) {
+        // You can use window.location.href to redirect to the modifyproduct.html page
+        window.location.href = 'modifyproduct.html?productId=' + productId;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seller dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        
+        }
+        html, body {
+              height: 100%;
+               margin: 10;
+        }
+        #user-options div {
+            margin-right: 20px; 
+            width:200px;
+        }
+
+        #logo {
+            margin-top: 2px;
+            margin-left: 60px;
+        }
+
+        #website-name {
+            font-size: 1.2em;
+            margin-left: 55px;
+        }
+
+        #user-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: right;
+            margin-left: 1300px;
+            width:200px; 
+        }
+
+        #container {
+            display: flex;
+            height: 100%;
+        }
+
+        #sidebar {
+            width: 250px;
+            color: black;
+            overflow-y: auto;
+        }
+
+        #sidebar a {
+            display: block;
+            color: whitesmoke;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        #sidebar a:hover {
+            background-color: #555;
+        }
+
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+            height: 80vh;
+        }
+
+        .dropdown {
+            position: relative;
+            display: block;
+            margin-right: 20px;
+        }
+        .dd2 .dropdown {
+            margin-left: 35px;
+        }
+
+       .dd2 .dropdown-content {
+            display: none;
+            position: absolute;
+            color: black;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            margin-left: 60px;
+        }
+        .dd2 .dropdown-content a {
+        padding: 12px 16px; 
+         display: block;
+         background-color: black;
+         text-decoration: none;
+         transition: background-color 0.3s;
+       }
+    
+       .dd1 .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            margin-left: 5px;
+        }
+
+        .dd2 .dropdown-content a {
+        padding: 10px 10px; 
+         display: block;
+         background-color: black;
+         text-decoration: none;
+         transition: background-color 0.3s;
+       }
+       .dd1 .dropdown-content a {
+         display: block;
+         text-decoration: none;
+         transition: background-color 0.3s;
+         width:50px;
+       }
+        
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        #content > div {
+            display: none;
+        }
+
+        h2 {
+            color: #333;
+        }
+        .align1{
+            height:50px;
+            margin-top: 6px;
+            width: 240px;
+            margin-left: 5px;
+        }
+       .sidebar-option {
+           padding: 15px;
+           color: white;
+           text-decoration: none;
+           transition: background-color 0.3s;
+           border-radius: 5px;
+        }
+        .dashboarddiv{
+            background-color: #3498db;
+        }
+        .productdiv{
+            background-color: #2ecc71;
+        }
+        .orderdiv{
+            background-color: #e74c3c; 
+        }
+        .inventdiv{
+            background-color: #f39c12;
+        }
+        .salesdiv{
+            background-color: #9b59b6;
+        }
+        .shippingdiv{
+            background-color: #34495e;
+        }
+        .customerdiv{
+            background-color: #27ae60;
+        }
+        .analyticdiv{
+            background-color: #e67e22;
+        }
+        .accdiv{
+            background-color: #d35400;
+        }
+        .fbdiv{
+            background-color: #8e44ad; 
+        }
+</style>
+</head>
+<body>
+        <div id="user-options">
+            <div class="dropdown dd1">
+                <span>Account</span>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a><br>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+            <div class="dropdown dd1">
+                <span>Settings</span>
+                <div class="dropdown-content">
+                    <a href="#">General</a><br>
+                    <a href="#">Security</a>
+                </div>
+            </div>
+        </div>
+    <div id="container">
+        <div id="sidebar">
+            <div id="logo">
+            <img src="C:\Users\91779\OneDrive\Documents\online shopping portal\Dashboard1-main\Dashboard1-main\ammu.jpg" alt="Your Logo" width="100">
+        </div>
+        <div id="website-name">
+            Shop Fusion
+        </div>
+            <div class="align1"><a onclick="showContent('dashboard')" class="sidebar-option dashboarddiv">Dashboard</a></div>
+            <div class="dropdown dd2 align1 ">
+                <a onclick="toggleDropdown('productManagement')" class="sidebar-option productdiv">Product Management</a>
+                <div class="dropdown-content" id="productManagement">
+                    <a href="addproduct.html">Add Product</a>
+                    <a href="modifyproduct1.html">Modify Product</a>
+                    <a href="DeleteProduct.html">Delete Product</a>
+                </div>
+            </div>
+            <div class="align1"><a onclick="showContent('orderManagement')" class="sidebar-option orderdiv">Order Management</a></div>
+            <div class="align1"><a onclick="showContent('inventoryManagement')" class="sidebar-option inventdiv">Inventory Management</a></div>
+            <div class="align1"><a onclick="showContent('salesEarnings')" class="sidebar-option salesdiv">Sales and Earnings</a></div>
+            <div class="align1"><a onclick="showContent('shippingLogistics')"class="sidebar-option shippingdiv">Shipping and Logistics</a></div>
+            <div class="align1"><a onclick="showContent('customerManagement')"  class="sidebar-option customerdiv">Customer Management</a></div>
+           <div class="align1"><a onclick="showContent('productAnalytics')" class="sidebar-option analyticdiv">Product Analytics</a></div>
+            <div class="align1"><a onclick="showContent('accountBalances')" class="sidebar-option accdiv">Account Balances</a></div>
+            <div class="align1"><a onclick="showContent('feedback')" class="sidebar-option fbdiv">Feedback</a></div>
+        </div>
+
+        <div id="content">
+            <div id="dashboardContent">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .dashboard-container {
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 20px;
+
+    }
+    .chart-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 24%;
+      height: 170px;
+      transition: all 0.3s ease;
+    }
+    .chart-container canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+  <div class="chart-container" onclick="toggleChartSize('salesBarChart')">
+    <h2>Sales Overview</h2>
+    <canvas id="salesBarChart" width="15" height="5"></canvas>
+  </div>
+
+  <div class="chart-container" onclick="toggleChartSize('performanceBarChart')">
+    <h2>Performance Metrics</h2>
+    <canvas id="performanceBarChart" width="15" height="5"></canvas>
+  </div>
+
+  <div class="chart-container" onclick="toggleChartSize('ordersBarChart')">
+    <h2>Order Statistics</h2>
+    <canvas id="ordersBarChart" width="15" height="5"></canvas>
+  </div>
+</div>
+
+<h2>Performance Rankings</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Metric</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Metric 1</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Metric 2</td>
+      <td>80</td>
+    </tr>
+   
+  </tbody>
+</table>
+
+<h2>Highly Sold or Trending Products</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Product ID</th>
+      <th>Product Name</th>
+      <th>Units Sold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>101</td>
+      <td>Product A</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>Product B</td>
+      <td>120</td>
+    </tr>
+</table>
+
+<script>
+  const salesData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+      label: 'Monthly Sales',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1,
+      data: [65, 59, 80, 81, 56, 55],
+    }]
+  };
+
+  const performanceData = {
+    labels: ['Metric 1', 'Metric 2', 'Metric 3', 'Metric 4', 'Metric 5'],
+    datasets: [{
+      label: 'Performance Metrics',
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1,
+      data: [45, 60, 75, 90, 80],
+    }]
+  };
+
+  const ordersData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+      label: 'Order Count',
+      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+      borderColor: 'rgba(255, 206, 86, 1)',
+      borderWidth: 1,
+      data: [20, 35, 45, 30, 25, 40],
+    }]
+  };
+
+  const salesBarChartCtx = document.getElementById('salesBarChart').getContext('2d');
+  const performanceBarChartCtx = document.getElementById('performanceBarChart').getContext('2d');
+  const ordersBarChartCtx = document.getElementById('ordersBarChart').getContext('2d');
+
+  const charts = {
+    salesBarChart: new Chart(salesBarChartCtx, { type: 'bar', data: salesData }),
+    performanceBarChart: new Chart(performanceBarChartCtx, { type: 'bar', data: performanceData }),
+    ordersBarChart: new Chart(ordersBarChartCtx, { type: 'bar', data: ordersData }),
+  };
+
+  function toggleChartSize(chartId) {
+    const container = document.getElementById(chartId);
+    const isSmall = container.style.width === '23%';
+
+    if (isSmall) {
+      container.style.width = '100%';
+      container.style.height = 'auto';
+    } else {
+      container.style.width = '23%';
+      container.style.height = '300px'; 
+    }
+  }
+</script>
+</body>
+</html>
+</div>
+ <div id="productManagementContent">
+                <h2>Product Management</h2>
+                <p>This is the main content for the Product Management option.</p>
+            </div>
+        
+            <div id="orderManagementContent">
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="order-list">
+            <h2>Order Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product ID</th>
+                        <th>Customer Name</th>
+                        <th>Status</th>
+                        <th>View Order Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>ABC123</td>
+                        <td>John Doe</td>
+                        <td>Processing</td>
+                        <td><button onclick="viewOrderDetails(1, 'ABC123', 'John Doe', 'john@example.com', 50.00)">View Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>XYZ456</td>
+                        <td>Jane Smith</td>
+                        <td>Shipped</td>
+                        <td><button onclick="viewOrderDetails(2, 'XYZ456', 'Jane Smith', 'jane@example.com', 75.00)">View Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PQR789</td>
+                        <td>Bob Johnson</td>
+                        <td>Delivered</td>
+                        <td><button onclick="viewOrderDetails(3, 'PQR789', 'Bob Johnson', 'bob@example.com', 120.00)">View Details</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="order-details">
+            <table id="detailsTable">
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>
+        function viewOrderDetails(orderId, productId, customerName, customerEmail, productCost) {
+            var detailsTable = document.getElementById('detailsTable');
+            detailsTable.innerHTML = `
+                <tr>
+                    <td>Order ID</td>
+                    <td>${orderId}</td>
+                </tr>
+                <tr>
+                    <td>Product ID</td>
+                    <td>${productId}</td>
+                </tr>
+                <tr>
+                    <td>Customer Name</td>
+                    <td>${customerName}</td>
+                </tr>
+                <tr>
+                    <td>Customer Email</td>
+                    <td>${customerEmail}</td>
+                </tr>
+                <tr>
+                    <td>Product Cost</td>
+                    <td>${productCost}</td>
+                </tr>
+                <!-- Add more rows for other order details -->
+            `;
+        }
+    </script>
+</body>
+</html>
+</div>
+<div id="inventoryManagementContent">
+              <!DOCTYPE html>
+              <html lang="en">
+              <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>Inventory Management</title>
+                  <style>
+                      table {
+                          width: 100%;
+                          border-collapse: collapse;
+                          margin-top: 20px;
+                      }
+                      th, td {
+                          border: 1px solid #ddd;
+                          padding: 8px;
+                          text-align: left;
+                      }
+                      th {
+                          background-color: #f2f2f2;
+                      }
+                  </style>
+              </head>
+              <body>
+              
+                  <h2>Current Stock Levels</h2>
+              
+                  <table>
+                      <thead>
+                          <tr>
+                              <th>Product ID</th>
+                              <th>Category</th>
+                              <th>Product Name</th>
+                              <th>Current Stock</th>
+                              <th>Demand</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>1</td>
+                              <td>Shoes</td>
+                              <td>Running Sneakers</td>
+                              <td>50</td>
+                              <td>60</td>
+                          </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>Shoes</td>
+                              <td>Fashion Boots</td>
+                              <td>30</td>
+                              <td>35</td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>Shoes</td>
+                              <td>Athletic Sandals</td>
+                              <td>15</td>
+                              <td>20</td>
+                          </tr>
+                          <tr>
+                              <td>4</td>
+                              <td>Dresses</td>
+                              <td>Evening Gown</td>
+                              <td>20</td>
+                              <td>25</td>
+                          </tr>
+                          <tr>
+                              <td>5</td>
+                              <td>Dresses</td>
+                              <td>Casual Dress</td>
+                              <td>25</td>
+                              <td>30</td>
+                          </tr>
+                          <tr>
+                              <td>6</td>
+                              <td>Beauty</td>
+                              <td>Facial Cleanser</td>
+                              <td>40</td>
+                              <td>45</td>
+                          </tr>
+                          <tr>
+                              <td>7</td>
+                              <td>Beauty</td>
+                              <td>Moisturizing Cream</td>
+                              <td>10</td>
+                              <td>15</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              
+                  <h2 style="margin-top: 20px;">Low Stock Products</h2>
+                     <table>
+                      <thead>
+                          <tr>
+                              <th>Product ID</th>
+                              <th>Category</th>
+                              <th>Product Name</th>
+                              <th>Current Stock</th>
+                              <th>Demand</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>3</td>
+                              <td>Shoes</td>
+                              <td>Athletic Sandals</td>
+                              <td>15</td>
+                              <td>20</td>
+                          </tr>
+                          <tr>
+                              <td>7</td>
+                              <td>Beauty</td>
+                              <td>Moisturizing Cream</td>
+                              <td>10</td>
+                              <td>15</td>
+                          </tr>
+                           </tbody>
+                  </table>
+              
+              </body>
+              </html>
+              </div>
+<div id="salesEarningsContent">
+              <!DOCTYPE html>
+              <html lang="en">
+              <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>Sales Report - Page 1</title>
+                  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                  <style>
+                      .page1-chart-container {
+                          display: flex;
+                          gap: 20px; 
+                      }
+              
+                      .page1-chart-container div {
+                          width: 25%;
+                          height: 30%;
+                      }
+              
+                      .page1-summary {
+                          margin-top: 30px;
+                      }
+              
+                      .page1-table {
+                          width: 100%;
+                          border-collapse: collapse;
+                          margin-top: 20px;
+                      }
+              
+                      .page1-table, .page1-th, .page1-td {
+                          border: 1px solid #ddd;
+                      }
+              
+                      .page1-th, .page1-td {
+                          padding: 12px;
+                          text-align: left;
+                      }
+              
+                      .page1-th {
+                          background-color: #f2f2f2;
+                      }
+                  </style>
+              </head>
+              <body>
+              <h2>Total Earnings and Profits Summary</h2>
+               <div class="page1-summary">
+                      <div class="page1-chart-container">
+                          <div>
+                              <h3>Weekly Performance</h3>
+                              <canvas id="page1WeeklyChart"></canvas>
+                          </div>
+                          <div>
+                              <h3>Monthly Performance (Number of Orders)</h3>
+                              <canvas id="page1MonthlyChart"></canvas>
+                          </div>
+                      </div>
+                      <h3>Monthly wise Earnings and Profits</h3>
+                      <table class="page1-table">
+                          <thead>
+                              <tr>
+                                  <th class="page1-th">Month</th>
+                                  <th class="page1-th">Total Earnings</th>
+                                  <th class="page1-th">Total Profits</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td class="page1-td">January</td>
+                                  <td class="page1-td">$10,000</td>
+                                  <td class="page1-td">$5,000</td>
+                              </tr>
+                              <tr>
+                                  <td class="page1-td">February</td>
+                                  <td class="page1-td">$12,000</td>
+                                  <td class="page1-td">$6,000</td>
+                              </tr>
+                             </tbody>
+                      </table>
+                      <table class="page1-table">
+                          <thead>
+                              <tr>
+                                  <th class="page1-th">Product</th>
+                                  <th class="page1-th">Total Earnings</th>
+                                  <th class="page1-th">Total Profits</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td class="page1-td">Product A</td>
+                                  <td class="page1-td">$5,000</td>
+                                  <td class="page1-td">$2,000</td>
+                              </tr>
+                              <tr>
+                                  <td class="page1-td">Product B</td>
+                                  <td class="page1-td">$7,000</td>
+                                  <td class="page1-td">$3,000</td>
+                              </tr>
+                           </tbody>
+                      </table>
+                  </div>
+                  <script>
+                      var page1WeeklyData = {
+                          labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+                          datasets: [{
+                              label: "Number of Orders",
+                              data: [50, 65, 40, 75],
+                              borderColor: "rgba(75, 192, 192, 1)",
+                              borderWidth: 1
+                          }]
+                      };
+                      var page1MonthlyData = {
+                          labels: ["January", "February", "March", "April"],
+                          datasets: [{
+                              label: "Number of Orders",
+                              data: [200, 180, 220, 250],
+                              borderColor: "rgba(255, 99, 132, 1)",
+                              borderWidth: 1
+                          }]
+                      };
+                      var page1WeeklyChart = new Chart(document.getElementById('page1WeeklyChart').getContext('2d'), {
+                          type: 'line',
+                          data: page1WeeklyData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true
+                                  }
+                              }
+                          }
+                      });
+                      var page1MonthlyChart = new Chart(document.getElementById('page1MonthlyChart').getContext('2d'), {
+                          type: 'line',
+                          data: page1MonthlyData,
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true
+                                  }
+                              }
+                          }
+                      });
+                  </script>
+              </body>
+              </html>
+            </div>
+
+<div id="shippingLogisticsContent">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .shipment-details {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .label-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .label-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <title>Shipment Details</title>
+</head>
+<body>
+
+  <h1>Shipment Details</h1>
+
+  <div class="shipment-details">
+    <p><strong>Shipment ID:</strong> SH123456</p>
+    <p><strong>Destination:</strong> New York, NY</p>
+    <p><strong>Shipping Fee:</strong> $10.00</p>
+    <p><strong>Shipment Status:</strong> Shipped</p>
+    <button class="label-btn" onclick="printShippingLabel('SH123456')">Print Shipping Label</button>
+  </div>
+
+  <div class="shipment-details">
+    <p><strong>Shipment ID:</strong> SH789012</p>
+    <p><strong>Destination:</strong> Los Angeles, CA</p>
+    <p><strong>Shipping Fee:</strong> $15.00</p>
+    <p><strong>Shipment Status:</strong> Out for Delivery</p>
+    <button class="label-btn" onclick="printShippingLabel('SH789012')">Print Shipping Label</button>
+  </div>
+
+  <div class="shipment-details">
+    <p><strong>Shipment ID:</strong> SH345678</p>
+    <p><strong>Destination:</strong> Chicago, IL</p>
+    <p><strong>Shipping Fee:</strong> $12.50</p>
+    <p><strong>Shipment Status:</strong> Delivered</p>
+    <button class="label-btn" onclick="printShippingLabel('SH345678')">Print Shipping Label</button>
+  </div>
+
+  <script>
+    function printShippingLabel(shipmentId) {
+       alert("Printing shipping label for Shipment ID: " + shipmentId);
+    }
+  </script>
+
+</body>
+</html>
+
+            </div>
+
+            <div id="customerManagementContent">
+                    <!DOCTYPE html>
+                 <html lang="en">
+                  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="customer-list">
+            <h2>Customers List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>View Details</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td><button onclick="displayCustomerDetails('John Doe', 'john@example.com', [5, 10, 15, 7, 20])">View Monthly Orders</button></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td><button onclick="displayCustomerDetails('Jane Smith', 'jane@example.com', [8, 12, 10, 5, 18])">View Monthly Orders</button></td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td><button onclick="displayCustomerDetails('Bob Johnson', 'bob@example.com', [15, 18, 22, 14, 25])">View Monthly Orders</button></td>
+                    </tr>
+                    <tr>
+                        <td>Alice Williams</td>
+                        <td>alice@example.com</td>
+                        <td><button onclick="displayCustomerDetails('Alice Williams', 'alice@example.com', [12, 10, 8, 15, 20])">View Monthly Orders</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="customer-details">
+            <table id="customerdetailsTable">
+                <tbody>
+                </tbody>
+            </table>
+            <canvas id="monthlyOrdersChart"></canvas>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        function displayCustomerDetails(name, email, monthlyOrders) {
+            var detailsTable = document.getElementById('customerdetailsTable');
+            detailsTable.innerHTML = `
+                <tr>
+                    <td>Name</td>
+                    <td>${name}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>${email}</td>
+                </tr>
+                <tr>
+                    <td>Monthly Orders</td>
+                    <td>${monthlyOrders.join(', ')}</td>
+                </tr>
+                <!-- Add more rows for other customer details -->
+            `;
+            var chartData = {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Monthly Orders',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: monthlyOrders,
+                }]
+            };
+        }
+    </script>
+</body>
+</html>
+            </div>
+<div id="productAnalyticsContent">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin: 20px;
+          background-color: #f4f4f4;
+        }
+    
+        h1 {
+          color: #333;
+          text-align: center;
+        }
+    
+        .section {
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          padding: 15px;
+          margin-bottom: 20px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        h2 {
+          color: #333;
+          cursor: pointer;
+        }
+    
+        .product-list, .reviews-list {
+          list-style-type: none;
+          padding: 0;
+        }
+    
+        .product-item, .review-item {
+          background-color: #fff;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          margin-bottom: 15px;
+          padding: 15px;
+          transition: transform 0.3s ease-in-out;
+        }
+    
+        .product-item:hover, .review-item:hover {
+          transform: scale(1.02);
+        }
+    
+        .product-item p, .review-item p {
+          margin: 0;
+          color: #333;
+        }
+    
+        .product-item strong, .review-item strong {
+          color: #007bff;
+        }
+    
+        .product-id {
+          color: #777;
+          font-size: 0.8em;
+        }
+    
+        .rating {
+          color: #f39c12;
+          font-weight: bold;
+        }
+    
+        .rating::before {
+          content: '\2605'; 
+          margin-right: 5px;
+        }
+    
+        .content {
+          display: none;
+        }
+      </style>
+      <title>Sales and Reviews</title>
+    </head>
+    <body>
+    
+      <h1>Sales Performance and Reviews</h1>
+    
+      <div class="section" id="sales-performance">
+        <h2 onclick="toggleContent('sales-performance')">Sales Performance</h2>
+        <div class="content">
+          <ul class="product-list">
+            <li class="product-item">
+              <p class="product-id">Product ID: #001</p>
+              <p><strong>Product:</strong> Laptop</p>
+              <p><strong>Category:</strong> Electronics</p>
+              <p><strong>Total Orders:</strong> 150</p>
+            </li>
+            <li class="product-item">
+              <p class="product-id">Product ID: #002</p>
+              <p><strong>Product:</strong> Sneakers</p>
+              <p><strong>Category:</strong> Fashion</p>
+              <p><strong>Total Orders:</strong> 120</p>
+            </li>
+            <li class="product-item">
+              <p class="product-id">Product ID: #003</p>
+              <p><strong>Product:</strong> Coffee Maker</p>
+              <p><strong>Category:</strong> Appliances</p>
+              <p><strong>Total Orders:</strong> 80</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="section" id="popular-products">
+        <h2 onclick="toggleContent('popular-products')">Popular Products</h2>
+        <div class="content">
+          <ul class="product-list">
+            <li class="product-item">
+              <p class="product-id">Product ID: #004</p>
+              <p><strong>Product:</strong> Smartphone</p>
+              <p><strong>Category:</strong> Electronics</p>
+              <p><strong>Total Orders:</strong> 200</p>
+            </li>
+            <li class="product-item">
+              <p class="product-id">Product ID: #005</p>
+              <p><strong>Product:</strong> T-shirt</p>
+              <p><strong>Category:</strong> Fashion</p>
+              <p><strong>Total Orders:</strong> 180</p>
+            </li>
+            <li class="product-item">
+              <p class="product-id">Product ID: #006</p>
+              <p><strong>Product:</strong> Blender</p>
+              <p><strong>Category:</strong> Appliances</p>
+              <p><strong>Total Orders:</strong> 120</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="section" id="customer-reviews">
+        <h2 onclick="toggleContent('customer-reviews')">Customer Reviews</h2>
+        <div class="content">
+          <div class="review-item">
+            <p class="product-id">Product ID: #001</p>
+            <p><strong>Product:</strong> Laptop</p>
+            <p class="rating">Rating: 4.5</p>
+            <p><strong>Review:</strong> Great performance and battery life!</p>
+          </div>
+          <div class="review-item">
+            <p class="product-id">Product ID: #004</p>
+            <p><strong>Product:</strong> Smartphone</p>
+            <p class="rating">Rating: 4.8</p>
+            <p><strong>Review:</strong> Amazing camera quality!</p>
+          </div>
+          <div class="review-item">
+            <p class="product-id">Product ID: #003</p>
+            <p><strong>Product:</strong> Coffee Maker</p>
+            <p class="rating">Rating: 3.9</p>
+            <p><strong>Review:</strong> Easy to use, but a bit noisy.</p>
+          </div>
+        </div>
+      </div>
+    
+      <script>
+        function toggleContent(sectionId) {
+          const content = document.getElementById(sectionId).getElementsByClassName('content')[0];
+          content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+        }
+      </script>
+    
+    </body>
+    </html>
+    
+     
+</div>
+<div id="accountBalancesContent">
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .balance-overview {
+            margin-bottom: 20px;
+        }
+
+        .transaction-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+    <title>Seller Dashboard</title>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="balance-overview">
+            <h2>Balance Overview</h2>
+            <p>Current Balance: $<span id="current-balance">0.00</span></p>
+            <p>Available Funds: $<span id="available-funds">0.00</span></p>
+            <p>Pending Transactions: $<span id="pending-transactions-amount">0.00</span></p>
+        </div>
+        <div class="transaction-history">
+            <h2>Transaction History and Pending Transactions</h2>
+            <table id="combined-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Order ID</th>
+                        <th>Product ID</th>
+                        <th>Customer Name</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const accountData = {
+                currentBalance: 1000.00,
+                availableFunds: 750.00,
+                pendingTransactions: 50.00,
+                transactions: [
+                    { date: '2023-01-01', orderId: '12345', productId: 'P001', customerName: 'John Doe', description: 'Sale', type: 'income', amount: 200.00 },
+                    { date: '2023-01-05', orderId: '67890', productId: 'P002', customerName: 'Jane Smith', description: 'Refund', type: 'expense', amount: -50.00 },
+                     ],
+                pendingTransactionDetails: [
+                    { date: '2023-01-10',  orderId: '54321', productId: 'P003', customerName: 'Alice Johnson',description: 'COD Payment', type: 'income', amount: 50.00, status: 'Pending' },
+                    
+                ]
+            };
+
+           
+            document.getElementById('current-balance').innerText = accountData.currentBalance.toFixed(2);
+            document.getElementById('available-funds').innerText = accountData.availableFunds.toFixed(2);
+            document.getElementById('pending-transactions-amount').innerText = accountData.pendingTransactions.toFixed(2);
+          const combinedTable = document.getElementById('combined-table');
+            const tbody = combinedTable.getElementsByTagName('tbody')[0];
+
+            accountData.transactions.forEach(transaction => {
+                const row = tbody.insertRow();
+                row.insertCell(0).innerText = transaction.date;
+                row.insertCell(1).innerText = transaction.orderId;
+                row.insertCell(2).innerText = transaction.productId;
+                row.insertCell(3).innerText = transaction.customerName;
+                row.insertCell(4).innerText = transaction.description;
+                row.insertCell(5).innerText = transaction.type;
+                row.insertCell(6).innerText = transaction.amount.toFixed(2);
+                row.insertCell(7).innerText = 'Completed'; 
+            });
+
+            accountData.pendingTransactionDetails.forEach(detail => {
+                const row = tbody.insertRow();
+                row.insertCell(0).innerText = detail.date;
+                row.insertCell(1).innerText = detail.orderId;
+                row.insertCell(2).innerText = detail.productId;
+                row.insertCell(3).innerText = detail.customerName;
+                row.insertCell(4).innerText = detail.description;
+                row.insertCell(5).innerText = detail.type;
+                row.insertCell(6).innerText = detail.amount.toFixed(2);
+                row.insertCell(7).innerText = detail.status;
+            });
+        });
+    </script>
+</body>
+</html>
+            </div>
+
+            <div id="feedbackContent">
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 0;
+                            background-color: #f4f4f4;
+                        }
+                
+                        .dashboard {
+                            max-width: 800px;
+                            margin: 20px auto;
+                            padding: 20px;
+                            background-color: #fff;
+                            border-radius: 8px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        }
+                
+                        .feedback-item {
+                            border-bottom: 1px solid #ddd;
+                            padding: 10px;
+                            margin-bottom: 10px;
+                        }
+                
+                        .feedback-item:last-child {
+                            border-bottom: none;
+                        }
+                
+                        .star-rating {
+                            color: #FFD700; 
+                        }
+                
+                        .unfilled-star {
+                            color: #ccc; 
+                        }
+                
+                        .response-container {
+                            margin-top: 10px;
+                        }
+                
+                        .response-dropdown {
+                            width: 100%;
+                            padding: 5px;
+                            margin-bottom: 5px;
+                        }
+                
+                        .response-button {
+                            background-color: #4CAF50;
+                            color: #fff;
+                            padding: 5px 10px;
+                            border: none;
+                            cursor: pointer;
+                        }
+                
+                        .average-rating {
+                            margin-top: 10px;
+                        }
+                    </style>
+                    <title>Seller Dashboard Feedback</title>
+                </head>
+                <body>
+                    <div class="dashboard">
+                        <h1>Seller Dashboard Feedback</h1>
+                        <div id="feedback-container"></div>
+                        <div class="average-rating" id="average-rating"></div>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const feedbackData = [
+                                { id: 1, customer: 'Customer A', rating: 4, comment: 'Great product!', response: '' },
+                                { id: 2, customer: 'Customer B', rating: 2, comment: 'Not satisfied with the delivery time.', response: '' },
+                                { id: 3, customer: 'Customer C', rating: 5, comment: 'Excellent service!', response: '' },
+                                { id: 4, customer: 'Customer D', rating: 3, comment: 'Product quality could be better.', response: '' },
+                              ];
+                
+                            const predefinedResponses = [
+                                'Thank you for your feedback!',
+                                'We apologize for any inconvenience.',
+                                'We will look into this issue and address it promptly.',
+                                'Please contact our customer support for further assistance.',
+                                'We appreciate your positive review!',
+                                'We are sorry to hear about your experience.',
+                                'Your satisfaction is our top priority.',
+                            ];
+                
+                            const feedbackContainer = document.getElementById('feedback-container');
+                            const averageRatingContainer = document.getElementById('average-rating');
+                            function generateStarRating(rating) {
+                                const filledStars = '<span class="star-rating">&#9733;</span>'.repeat(rating);
+                                const unfilledStars = '<span class="unfilled-star">&#9733;</span>'.repeat(5 - rating);
+                                return filledStars + unfilledStars;
+                            }
+                            function generateResponseOptions() {
+                                return predefinedResponses.map(response => `<option>${response}</option>`).join('');
+                            }
+                       function calculateAverageRating() {
+                                const totalRatings = feedbackData.reduce((sum, feedback) => sum + feedback.rating, 0);
+                                const averageRating = totalRatings / feedbackData.length || 0;
+                                return averageRating.toFixed(1);
+                            }
+                            function displayFeedbackItems() {
+                                feedbackContainer.innerHTML = ''; // Clear existing content
+                
+                                feedbackData.forEach(feedback => {
+                                    const feedbackItem = document.createElement('div');
+                                    feedbackItem.classList.add('feedback-item');
+                                    feedbackItem.id = `feedback-${feedback.id}`;
+                                    feedbackItem.innerHTML = `
+                                        <h3>${feedback.customer} - Rating: ${generateStarRating(feedback.rating)}</h3>
+                                        <p>${feedback.comment}</p>
+                                        <div class="response-container">
+                                            <select class="response-dropdown">
+                                                <option value="" selected disabled>Select a response</option>
+                                                ${generateResponseOptions()}
+                                            </select>
+                                            <button class="response-button" onclick="respondToFeedback(${feedback.id})">Respond</button>
+                                        </div>
+                                    `;
+                                    feedbackContainer.appendChild(feedbackItem);
+                                });
+                           const averageRating = calculateAverageRating();
+                                averageRatingContainer.innerHTML = `<p><strong>Average Rating:</strong> ${averageRating} (${feedbackData.length} reviews)</p>`;
+                            }
+                            window.respondToFeedback = function(feedbackId) {
+                                const responseDropdown = document.querySelector(`#feedback-container #feedback-${feedbackId} .response-dropdown`);
+                                const responseValue = responseDropdown.value;
+                                const feedbackIndex = feedbackData.findIndex(item => item.id === feedbackId);
+                                if (feedbackIndex !== -1) {
+                                    feedbackData[feedbackIndex].response = responseValue;
+                                }
+                                const responseContainer = document.querySelector(`#feedback-container #feedback-${feedbackId} .response-container`);
+                                responseContainer.innerHTML = `<p><strong>Your Response:</strong> ${responseValue}</p>`;
+                                const averageRating = calculateAverageRating();
+                                averageRatingContainer.innerHTML = `<p><strong>Average Rating:</strong> ${averageRating} (${feedbackData.length} reviews)</p>`;
+                            };
+                
+                            displayFeedbackItems();
+                        });
+                    </script>
+                </body>
+                </html>
+                
+                
+            </div>
+
+    </div>
+</body>
+<script>
+    function showContent(contentId) {
+        hideAllContent();
+        document.getElementById(contentId + 'Content').style.display = 'block';
+    }
+
+    function toggleDropdown(dropdownId) {
+        var dropdownContent = document.getElementById(dropdownId);
+        dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function hideAllContent() {
+        var contentSections = document.querySelectorAll('#content > div');
+        contentSections.forEach(function (section) {
+            section.style.display = 'none';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('dashboardContent').style.display = 'block'
+    });
+
+</script>
+</html>
